@@ -12,6 +12,7 @@
 
 int act(int *p_line, int *p_matches, int *map, int *a_space)
 {
+    message(*p_line, *p_matches);
     map[(*p_line - 1)] -= *p_matches;
     a_space[(*p_line - 1)] += *p_matches;
     *p_line = 0;
@@ -52,11 +53,20 @@ int loop(int *nb_l_max, int *map, int *b_space, int *a_space)
     int p_matches = 0;
 
     while (over(map, nb_l_max[0]) == 1) {
-        map_displayer(map, nb_l_max[0], b_space, a_space);
+        my_putstr("\nYour turn:", 0);
         if (ask_line(&p_line, map, nb_l_max) == 84)
             return 0;
         if (ask_matches(&p_line, &p_matches, map, nb_l_max) == 84)
             return 0;
         act(&p_line, &p_matches, map, a_space);
+        map_displayer(map, nb_l_max[0], b_space, a_space);
+        if (over(map, nb_l_max[0]) == 0)
+            return 1;
+        my_putstr("\nAI's turn...", 0);
+        ai(map, nb_l_max, &p_line, &p_matches);
+        ai_act(&p_line, &p_matches, map, a_space);
+        map_displayer(map, nb_l_max[0], b_space, a_space);
+        if (over(map, nb_l_max[0]) == 0)
+            return 2;
     }
 }

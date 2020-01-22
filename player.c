@@ -57,6 +57,7 @@ int ask_line(int *p_line, int *map, int *lim)
         *p_line = 0;
         ask_line(p_line, map, lim);
     }
+    ask_line2(p_line, map, lim);
     return 0;
 }
 
@@ -95,4 +96,5 @@ int ask_matches(int *p_line, int *p_matches, int *map, int *lim)
         ask_matches(p_line, p_matches, map, lim);
     }
     ask_matches2(p_line, p_matches, map, lim);
+    return 0;
 }

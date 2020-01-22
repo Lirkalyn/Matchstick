@@ -8,6 +8,7 @@
 
 SRC	=	main.c \
 		player.c \
+		player2_ai.c \
 		display.c \
 		act.c
 

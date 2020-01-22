@@ -86,6 +86,7 @@ int main(int argc, char **argv)
     int *map;
     int *b_space;
     int *a_space;
+    int who = 0;
 
     if (argc != 3 || convert(argv[1], argv[2], &nb_l_max[0], &nb_l_max[1]))
         return 84;
@@ -94,5 +95,11 @@ int main(int argc, char **argv)
         return 84;
     map_maker(map, nb_l_max[0], 0, 1);
     spacer(map, nb_l_max[0], b_space, a_space);
-    loop(nb_l_max, map, b_space, a_space);
+    map_displayer(map, nb_l_max[0], b_space, a_space);
+    who = loop(nb_l_max, map, b_space, a_space);
+    if (who == 1)
+        my_putstr("I lost... snif... but I'll get you next time!!", 0);
+    else if (who == 2)
+        my_putstr("You lost, too bad...", 0);
+    return who;
 }
