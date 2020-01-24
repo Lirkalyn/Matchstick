@@ -50,15 +50,14 @@ int ask_line(int *p_line, int *map, int *lim)
     if (m_convert(line, p_line) == 1) {
         my_putstr("Error: invalid input (positive number expected)", 0);
         *p_line = 0;
-        ask_line(p_line, map, lim);
+        return ask_line(p_line, map, lim);
     }
     else if (*p_line == 0 || *p_line > lim[0]) {
         my_putstr("Error: this line is out of range", 0);
         *p_line = 0;
-        ask_line(p_line, map, lim);
+        return ask_line(p_line, map, lim);
     }
-    ask_line2(p_line, map, lim);
-    return 0;
+    return ask_line2(p_line, map, lim);
 }
 
 int ask_matches2(int *p_line, int *p_matches, int *map, int *lim)
@@ -68,13 +67,14 @@ int ask_matches2(int *p_line, int *p_matches, int *map, int *lim)
         my_put_nbr(lim[1]);
         my_putstr(" matches per turn", 0);
         *p_matches = 0;
-        ask_matches(p_line, p_matches, map, lim);
+        return ask_matches(p_line, p_matches, map, lim);
     }
     else if (*p_matches > map[(*p_line - 1)]) {
         my_putstr("Error: not enough matches on this line", 0);
         *p_matches = 0;
-        ask_matches(p_line, p_matches, map, lim);
+        return ask_matches(p_line, p_matches, map, lim);
     }
+    return 0;
 }
 
 int ask_matches(int *p_line, int *p_matches, int *map, int *lim)
@@ -88,13 +88,12 @@ int ask_matches(int *p_line, int *p_matches, int *map, int *lim)
     if (m_convert(line, p_matches) == 1) {
         my_putstr("Error: invalid input (positive number expected)", 0);
         *p_matches = 0;
-        ask_matches(p_line, p_matches, map, lim);
+        return ask_matches(p_line, p_matches, map, lim);
     }
     else if (*p_matches == 0) {
         my_putstr("Error: you have to remove at least one match", 0);
         *p_matches = 0;
-        ask_matches(p_line, p_matches, map, lim);
+        return ask_matches(p_line, p_matches, map, lim);
     }
-    ask_matches2(p_line, p_matches, map, lim);
-    return 0;
+    return ask_matches2(p_line, p_matches, map, lim);
 }

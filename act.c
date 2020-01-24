@@ -56,7 +56,7 @@ int loop(int *nb_l_max, int *map, int *b_space, int *a_space)
         my_putstr("\nYour turn:", 0);
         if (ask_line(&p_line, map, nb_l_max) == 84)
             return 0;
-        if (ask_matches(&p_line, &p_matches, map, nb_l_max) == 84)
+        else if (ask_matches(&p_line, &p_matches, map, nb_l_max) == 84)
             return 0;
         act(&p_line, &p_matches, map, a_space);
         map_displayer(map, nb_l_max[0], b_space, a_space);

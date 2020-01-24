@@ -15,8 +15,9 @@ int ask_line2(int *p_line, int *map, int *lim)
     if (map[(*p_line - 1)] <= 0) {
         my_putstr("Error: there is no more matches on this line", 0);
         *p_line = 0;
-        ask_line(p_line, map, lim);
+        return ask_line(p_line, map, lim);
     }
+    return 0;
 }
 
 int message(int p_line, int p_matches)
